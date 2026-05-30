@@ -260,6 +260,20 @@ Releases are fully automated:
 > keystore via GitHub secrets and extend `release.yml` with a `signingConfig`
 > step.
 
+### Support the project
+
+If AutoClean actually made your TV usable again and you'd like to say thanks,
+you can send a tip via **PIX** (Brazilian instant payment, free of fees, any
+amount). PIX is available to anyone with a Brazilian bank account; the key
+below is an e-mail key — paste it as the destination in your banking app.
+
+> **PIX key (e-mail):** `tarcisiojunior@gmail.com`
+>
+> Recipient: Tarcísio Júnior
+
+No pressure, no paywall, no ads, no telemetry — the app is and will stay
+fully free. Donations are just a kind way to fuel future tinkering.
+
 ### License
 
 [MIT](LICENSE) © Tarcísio Júnior
@@ -517,6 +531,20 @@ Totalmente automatizado:
 > distribuição em loja. Para publicar um APK release assinado de verdade,
 > configure um keystore via GitHub Secrets e estenda o `release.yml` com um
 > passo de `signingConfig`.
+
+### Apoie o projeto
+
+Se o AutoClean fez sua TV voltar a ser usável e você quer agradecer, pode
+mandar um **PIX** (qualquer valor, sem taxa). A chave abaixo é uma chave
+e-mail — é só colar como destino no app do seu banco.
+
+> **Chave PIX (e-mail):** `tarcisiojunior@gmail.com`
+>
+> Recebedor: Tarcísio Júnior
+
+Sem pressão, sem paywall, sem ads, sem telemetria — o app é e continuará
+totalmente gratuito. Doações são só um gesto simpático que ajuda a manter o
+ânimo pra continuar mexendo.
 
 ### Licença
 
