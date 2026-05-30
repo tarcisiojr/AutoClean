@@ -5,7 +5,7 @@ plugins {
 
 // versionName é fonte única de verdade — atualizado pelo release-please.
 // versionCode é derivado automaticamente: MAJOR*10000 + MINOR*100 + PATCH.
-val appVersionName = "2.0.0" // x-release-please-version
+val appVersionName = "2.0.1" // x-release-please-version
 val appVersionCode = appVersionName.split(".").let { parts ->
     require(parts.size == 3) { "versionName precisa seguir SemVer (MAJOR.MINOR.PATCH): $appVersionName" }
     parts[0].toInt() * 10_000 + parts[1].toInt() * 100 + parts[2].toInt()
