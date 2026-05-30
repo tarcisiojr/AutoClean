@@ -13,7 +13,21 @@ captures/
 
 # Logs
 *.log
+adb.*.log
 
-# Keystores
+# Keystores e segredos
 *.jks
 *.keystore
+*.p12
+*.pem
+.env
+.env.*
+key.properties
+signing.properties
+
+# Notas locais do desenvolvedor (IP da TV, etc.)
+.local-notes
+.local-notes/
+
+# Saídas do OpenSpec / ferramentas auxiliares
+openspec/.cache/

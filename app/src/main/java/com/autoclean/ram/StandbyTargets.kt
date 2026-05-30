@@ -43,11 +43,13 @@ object StandbyTargets {
     /** Apps TCL secundários que podem ficar em background */
     private val tclSecondary = listOf(
         "com.tcl.exhibit",
-        "com.tcl.suspension",
-        "com.tcl.tv",
-        "com.tcl.magiconnectfree",
-        "com.tcl.partnercustomizer",
-        "com.tcl.ui_mediaCenter"
+        "com.tcl.partnercustomizer"
+        // Removidos:
+        // - com.tcl.magiconnectfree e com.tcl.suspension: atraso de ~30s para
+        //   reconectar Wi-Fi ao sair do standby.
+        // - com.tcl.tv e com.tcl.ui_mediaCenter: faziam dispositivos HDMI-CEC
+        //   (ex.: PS5 atrás do receiver) sumirem da lista de entradas.
+        // Ver docs/tcl-c7k-notes.md.
     )
 
     /** Todos os pacotes-alvo da limpeza de standby */

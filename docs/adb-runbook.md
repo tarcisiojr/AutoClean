@@ -6,8 +6,8 @@ Comandos úteis para setup, deploy e debug. Ajusta o IP conforme o DHCP da TV.
 
 ```bash
 # Ligar a TV com o controle antes
-adb connect 192.168.0.70:5555
-adb devices   # confirma 'device' (não 'offline')
+adb connect <TV_IP>:5555    # ex.: 192.168.x.y obtido no roteador ou nas config. da TV
+adb devices                 # confirma 'device' (não 'offline')
 ```
 
 Se aparecer `offline`, a TV está em standby ou a autorização expirou. Acorda e autoriza o popup.
@@ -63,7 +63,7 @@ adb shell "nohup logcat -f /data/local/tmp/autoclean_test.log \
 adb shell input keyevent KEYCODE_SLEEP
 
 # --- Acorda a TV com o controle remoto e reconecta ---
-adb disconnect && adb connect 192.168.0.70:5555
+adb disconnect && adb connect <TV_IP>:5555
 adb shell "cat /data/local/tmp/autoclean_test.log | tail -20"
 ```
 
