@@ -3,6 +3,14 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+// versionName é fonte única de verdade — atualizado pelo release-please.
+// versionCode é derivado automaticamente: MAJOR*10000 + MINOR*100 + PATCH.
+val appVersionName = "2.0.0" // x-release-please-version
+val appVersionCode = appVersionName.split(".").let { parts ->
+    require(parts.size == 3) { "versionName precisa seguir SemVer (MAJOR.MINOR.PATCH): $appVersionName" }
+    parts[0].toInt() * 10_000 + parts[1].toInt() * 100 + parts[2].toInt()
+}
+
 android {
     namespace = "com.autoclean"
     compileSdk = 34
@@ -11,8 +19,8 @@ android {
         applicationId = "com.autoclean"
         minSdk = 31
         targetSdk = 31
-        versionCode = 2
-        versionName = "2.0.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
 
         ndk {
             abiFilters += listOf("armeabi-v7a")

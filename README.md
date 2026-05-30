@@ -4,6 +4,9 @@
 > Built and validated on a **TCL C7K** (Android TV 12, MT9653GL, 2 GB RAM), but the
 > approach is portable to other low-RAM Android TVs.
 
+[![CI](https://github.com/tarcisiojr/AutoClean/actions/workflows/ci.yml/badge.svg)](https://github.com/tarcisiojr/AutoClean/actions/workflows/ci.yml)
+[![Release](https://github.com/tarcisiojr/AutoClean/actions/workflows/release.yml/badge.svg)](https://github.com/tarcisiojr/AutoClean/actions/workflows/release.yml)
+[![Latest release](https://img.shields.io/github/v/release/tarcisiojr/AutoClean?sort=semver)](https://github.com/tarcisiojr/AutoClean/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Android%20TV%2012-green)]()
 [![APK size](https://img.shields.io/badge/APK-~1.2%20MB-brightgreen)]()
@@ -207,6 +210,55 @@ Please open an issue describing the device (brand, model, Android TV version,
 RAM) before sending a PR that changes the target list. Read
 [`CLAUDE.md`](CLAUDE.md) (alias of `AGENTS.md`) for the codebase conventions
 used by AI assistants and by the author.
+
+#### Commit message convention
+
+Commits **must** follow [Conventional Commits](https://www.conventionalcommits.org/).
+The version number and changelog are derived automatically from these messages
+by [release-please](https://github.com/googleapis/release-please).
+
+| Type       | Effect on SemVer | Used for                                  |
+| ---------- | ---------------- | ----------------------------------------- |
+| `feat:`    | **MINOR** bump   | new user-visible feature                  |
+| `fix:`     | **PATCH** bump   | bug fix                                   |
+| `perf:`    | **PATCH** bump   | performance improvement                   |
+| `docs:`    | none             | documentation only                        |
+| `refactor:`| none             | internal change, no behavior diff         |
+| `test:`    | none             | tests                                     |
+| `build:`   | none             | build system / dependencies               |
+| `ci:`      | none             | CI configuration                          |
+| `chore:`   | none             | misc maintenance                          |
+| `feat!:` or footer `BREAKING CHANGE:` | **MAJOR** bump | incompatible change |
+
+Examples:
+
+```text
+feat(targets): add Pluto TV to standby kill list
+fix(worker): handle SecurityException on unprivileged kill
+docs(readme): clarify ADB Wireless pairing on Google TV
+feat(api)!: drop support for Android TV 9
+
+BREAKING CHANGE: minSdk raised to 30.
+```
+
+#### Release process
+
+Releases are fully automated:
+
+1. Merge Conventional Commits into `main`.
+2. The `Release` workflow opens (or updates) a *Release PR* with the bumped
+   version in `app/build.gradle.kts`, an updated `CHANGELOG.md` and a new
+   entry in `.release-please-manifest.json`.
+3. Merging that PR creates a Git tag (`vX.Y.Z`) and a matching GitHub
+   Release.
+4. The same workflow then builds `assembleDebug` and uploads
+   `autoclean-X.Y.Z-debug.apk` as a release asset.
+
+> The published APK is signed with Android's auto-generated **debug**
+> keystore — fine for sideloading and personal use, **not** for store
+> distribution. To publish a properly signed release APK, configure a
+> keystore via GitHub secrets and extend `release.yml` with a `signingConfig`
+> step.
 
 ### License
 
@@ -416,6 +468,55 @@ Issues e pull requests são bem-vindos — em especial:
 Antes de mandar um PR alterando a lista, abra uma issue descrevendo o
 dispositivo (marca, modelo, versão do Android TV, RAM). Convenções do
 codebase estão em [`CLAUDE.md`](CLAUDE.md) (alias de `AGENTS.md`).
+
+#### Convenção de mensagens de commit
+
+Todos os commits **devem** seguir [Conventional Commits](https://www.conventionalcommits.org/).
+A versão e o changelog são derivados automaticamente dessas mensagens pelo
+[release-please](https://github.com/googleapis/release-please).
+
+| Tipo       | Efeito no SemVer | Quando usar                                |
+| ---------- | ---------------- | ------------------------------------------ |
+| `feat:`    | bump **MINOR**   | nova funcionalidade visível                |
+| `fix:`     | bump **PATCH**   | correção de bug                            |
+| `perf:`    | bump **PATCH**   | melhoria de performance                    |
+| `docs:`    | nenhum           | apenas documentação                        |
+| `refactor:`| nenhum           | mudança interna sem alterar comportamento  |
+| `test:`    | nenhum           | testes                                     |
+| `build:`   | nenhum           | sistema de build / dependências            |
+| `ci:`      | nenhum           | configuração de CI                         |
+| `chore:`   | nenhum           | manutenção diversa                         |
+| `feat!:` ou rodapé `BREAKING CHANGE:` | bump **MAJOR** | mudança incompatível |
+
+Exemplos:
+
+```text
+feat(targets): adicionar Pluto TV à lista de standby
+fix(worker): tratar SecurityException no kill sem permissão
+docs(readme): esclarecer pareamento ADB Wireless no Google TV
+feat(api)!: remover suporte ao Android TV 9
+
+BREAKING CHANGE: minSdk elevado para 30.
+```
+
+#### Processo de release
+
+Totalmente automatizado:
+
+1. Faça merge na `main` com mensagens em Conventional Commits.
+2. O workflow `Release` abre (ou atualiza) um *Release PR* com a versão
+   incrementada em `app/build.gradle.kts`, o `CHANGELOG.md` atualizado e a
+   nova entrada em `.release-please-manifest.json`.
+3. Ao mergear esse PR, uma tag git (`vX.Y.Z`) e uma GitHub Release
+   correspondente são criadas.
+4. O mesmo workflow então roda `assembleDebug` e anexa
+   `autoclean-X.Y.Z-debug.apk` como asset da release.
+
+> O APK publicado é assinado com o **debug keystore** gerado automaticamente
+> pelo Android — ok para sideload e uso pessoal, **não** serve para
+> distribuição em loja. Para publicar um APK release assinado de verdade,
+> configure um keystore via GitHub Secrets e estenda o `release.yml` com um
+> passo de `signingConfig`.
 
 ### Licença
 
